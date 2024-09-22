@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class EntryPoint : MonoBehaviour 
 {
-	private GameObject _gameObject;
-	private IInitializable _initializable;
+	[SerializeField] private PlayerInput _playerInput;
+	[SerializeField] private PlayerMover _playerMover;
 	
 	private void Awake()
 	{
-		_initializable = _gameObject.GetComponent<IInitializable>();
-		
-		_initializable.Initialize();
+		_playerInput.Initialize();
+		_playerMover.Initialize();
 	}
 }

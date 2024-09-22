@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput : MonoBehaviour, IInitializable
 {
 	[SerializeField] private PlayerMover _playerMover;
 	
 	private InputMap _inputMap;
 	
-	private void Awake()
+	public void Initialize()
 	{
 		_inputMap = new InputMap();
-		
-
 	}
 	
 	private void OnEnable()

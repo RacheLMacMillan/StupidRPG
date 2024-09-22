@@ -1,32 +1,35 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour, IInitializable
 {
-	public float _playerMoveSpeed 
-	{ 
-		get
-		{
-			return _playerMoveSpeed;
-		}
+	[SerializeField] private float _startingPlayerSpeed;
+	
+	public float _playerMoveSpeed = 10;
+	// { 
+	// 	get
+	// 	{
+	// 		return _playerMoveSpeed;
+	// 	}
 		
-		private set
-		{
-			if (value < 0)
-			{
-				throw new ArgumentOutOfRangeException("value");
-			}
+	// 	private set
+	// 	{
+	// 		if (value < 0)
+	// 		{
+	// 			throw new ArgumentOutOfRangeException("value");
+	// 		}
 			
-			_playerMoveSpeed = value;
-		}
-	}
+	// 		_playerMoveSpeed = value;
+	// 	}
+	// }
 	
 	private Rigidbody2D _rigidbody;
 	
 	public void Initialize()
 	{
 		_rigidbody = GetComponent<Rigidbody2D>();
+		
+		ChangeMoveSpeed(_startingPlayerSpeed);
 	}
 	
 	public void Move(Vector2 movementVelocity)
@@ -35,5 +38,10 @@ public class PlayerMover : MonoBehaviour, IInitializable
 		Vector2 scaledVelocity = movementVelocity * scaledMoveSpeed;
 		
 		_rigidbody.MovePosition(_rigidbody.position + scaledVelocity);
+	}
+	
+	public void ChangeMoveSpeed(float speed)
+	{
+		_playerMoveSpeed = speed;
 	}
 }
