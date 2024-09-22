@@ -56,5 +56,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "StupidRPG.sln"
+    "dotnet.defaultSolution": "StupidRPG.sln",
+    "editor.fontSize": 20,
+    "editor.lineHeight": 1.25
 }
