@@ -7,3 +7,7 @@ Targest:
 - To know how github works (That's my first repository)
 - Make a simple RPG game from sourses and etc.
 - And just have Fun!
+
+Source:
+  Videos:
+    https://youtube.com/playlist?list=PL6bqhqO0Ba776ksb3F9P_xmUMT9WvmfFT&si=XE96zHUO5Sho2pFb 
