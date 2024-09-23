@@ -1,13 +1,8 @@
+using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
-public class EntryPoint : MonoBehaviour 
+public class EntryPoing : MonoBehaviour	
 {
-	[SerializeField] private PlayerInput _playerInput;
-	[SerializeField] private PlayerMover _playerMover;
-	
-	private void Awake()
-	{
-		_playerInput.Initialize();
-		_playerMover.Initialize();
-	}
+	[SerializeField] private List<GameObject> G;
 }
