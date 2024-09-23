@@ -8,6 +8,8 @@ public class PlayerInput : MonoBehaviour, IInitializable
 	
 	public void Initialize()
 	{
+		Debug.Log("Input Manager");
+		
 		_inputMap = new InputMap();
 	}
 	
