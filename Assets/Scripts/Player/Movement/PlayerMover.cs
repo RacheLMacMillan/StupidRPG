@@ -1,9 +1,11 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
 {
 	[SerializeField] private float _playerMoveSpeed;
+	[SerializeField] private float _ValueOfSmoothingMoveSpeed;
 	
 	private Rigidbody2D _rigidbody;
 	
@@ -16,6 +18,7 @@ public class PlayerMover : MonoBehaviour
 	
 	public void Move(Vector2 movementVelocity)
 	{
+		
 		float scaledMoveSpeed = _playerMoveSpeed * Time.deltaTime;
 		Vector2 scaledVelocity = movementVelocity * scaledMoveSpeed;
 		
