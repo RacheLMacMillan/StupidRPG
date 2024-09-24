@@ -1,17 +1,17 @@
 using System;
 using UnityEngine;
 
-public class PlayerMover : MonoBehaviour, IInitializable
+public class PlayerMover : MonoBehaviour
 {
-	private float _playerMoveSpeed = 10;
+	[SerializeField] private float _playerMoveSpeed;
 	
 	private Rigidbody2D _rigidbody;
 	
-	public void Initialize()
+	private void Awake()
 	{
-		Debug.Log("Player Mover");
-		
 		_rigidbody = GetComponent<Rigidbody2D>();
+		
+		Debug.Log("Player Mover Initialized");
 	}
 	
 	public void Move(Vector2 movementVelocity)
