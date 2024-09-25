@@ -1,11 +1,11 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
 {
-	[SerializeField] private float _playerMoveSpeed;
-	[SerializeField] private float _ValueOfSmoothingMoveSpeed;
+	public float PlayerMoveSpeed { get; private set; }
+	
+	private float _ValueOfSmoothingMoveSpeed { get; }
 	
 	private Rigidbody2D _rigidbody;
 	
@@ -19,7 +19,7 @@ public class PlayerMover : MonoBehaviour
 	public void Move(Vector2 movementVelocity)
 	{
 		
-		float scaledMoveSpeed = _playerMoveSpeed * Time.deltaTime;
+		float scaledMoveSpeed = PlayerMoveSpeed * Time.deltaTime;
 		Vector2 scaledVelocity = movementVelocity * scaledMoveSpeed;
 		
 		_rigidbody.MovePosition(_rigidbody.position + scaledVelocity);
@@ -32,7 +32,7 @@ public class PlayerMover : MonoBehaviour
 			throw new ArgumentOutOfRangeException("value");
 		}
 		
-		_playerMoveSpeed += value;
+		PlayerMoveSpeed += value;
 	}
 	
 	public void DecreasePlayerSpeed(float value)
@@ -42,11 +42,6 @@ public class PlayerMover : MonoBehaviour
 			throw new ArgumentOutOfRangeException("value");
 		}
 		
-		_playerMoveSpeed -= value;
-	}
-
-	public float GetPlayerSpeedValue()
-	{
-		return _playerMoveSpeed;
+		PlayerMoveSpeed -= value;
 	}
 }
