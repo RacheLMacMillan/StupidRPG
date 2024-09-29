@@ -7,6 +7,7 @@ public class PlayerMover : MonoBehaviour, IInitializable
 	[SerializeField] private float _ValueOfSmoothingMoveSpeed;
 	
 	private Rigidbody2D _rigidbody;
+	private Vector2 _playerVelocity;
 	
 	public void Awake()
 	{
@@ -17,19 +18,11 @@ public class PlayerMover : MonoBehaviour, IInitializable
 	
 	public void Move(Vector2 movementVelocity)
 	{
-		float multipliedSmoothedMoveSpeedByDeltaTime = _ValueOfSmoothingMoveSpeed * Time.deltaTime;
+		float scaledMoveSpeed = _playerMoveSpeed * Time.deltaTime;
 		
-		float smoothedMoveSpeed = Mathf.Lerp
-		(
-			0,
-			_playerMoveSpeed,
-			multipliedSmoothedMoveSpeedByDeltaTime
-		);
+		_playerVelocity = _rigidbody.velocity;
 		
-		Debug.Log(smoothedMoveSpeed);
-		
-		// float scaledMoveSpeed = smoothedMoveSpeed * Time.deltaTime;
-		Vector2 scaledVelocity = movementVelocity * smoothedMoveSpeed;
+		Vector2 scaledVelocity = Vector2.Lerp(_playerVelocity, movementVelocity, scaledMoveSpeed);
 		
 		_rigidbody.MovePosition(_rigidbody.position + scaledVelocity);
 	}
