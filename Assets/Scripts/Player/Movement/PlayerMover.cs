@@ -1,15 +1,14 @@
 using System;
 using UnityEngine;
 
-public class PlayerMover : MonoBehaviour
+public class PlayerMover : MonoBehaviour, IInitializable
 {
-	public float PlayerMoveSpeed { get; private set; }
-	
-	private float _ValueOfSmoothingMoveSpeed { get; }
+	[SerializeField] private int _playerMoveSpeed;
+	[SerializeField] private float _ValueOfSmoothingMoveSpeed;
 	
 	private Rigidbody2D _rigidbody;
 	
-	private void Awake()
+	public void Awake()
 	{
 		_rigidbody = GetComponent<Rigidbody2D>();
 		
@@ -18,9 +17,19 @@ public class PlayerMover : MonoBehaviour
 	
 	public void Move(Vector2 movementVelocity)
 	{
+		float multipliedSmoothedMoveSpeedByDeltaTime = _ValueOfSmoothingMoveSpeed * Time.deltaTime;
 		
-		float scaledMoveSpeed = PlayerMoveSpeed * Time.deltaTime;
-		Vector2 scaledVelocity = movementVelocity * scaledMoveSpeed;
+		float smoothedMoveSpeed = Mathf.Lerp
+		(
+			0,
+			_playerMoveSpeed,
+			multipliedSmoothedMoveSpeedByDeltaTime
+		);
+		
+		Debug.Log(smoothedMoveSpeed);
+		
+		// float scaledMoveSpeed = smoothedMoveSpeed * Time.deltaTime;
+		Vector2 scaledVelocity = movementVelocity * smoothedMoveSpeed;
 		
 		_rigidbody.MovePosition(_rigidbody.position + scaledVelocity);
 	}
@@ -32,7 +41,7 @@ public class PlayerMover : MonoBehaviour
 			throw new ArgumentOutOfRangeException("value");
 		}
 		
-		PlayerMoveSpeed += value;
+		_playerMoveSpeed += Mathf.RoundToInt(value);
 	}
 	
 	public void DecreasePlayerSpeed(float value)
@@ -42,6 +51,11 @@ public class PlayerMover : MonoBehaviour
 			throw new ArgumentOutOfRangeException("value");
 		}
 		
-		PlayerMoveSpeed -= value;
+		_playerMoveSpeed -= Mathf.RoundToInt(value);
+	}
+	
+	public int GetPlayerMoveSpeed()
+	{
+		return _playerMoveSpeed;
 	}
 }

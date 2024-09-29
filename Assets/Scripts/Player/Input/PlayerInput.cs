@@ -6,7 +6,7 @@ public class PlayerInput : MonoBehaviour
 	
 	private InputMap _inputMap;
 	
-	private void Awake()
+	public void Awake()
 	{
 		_inputMap = new InputMap();
 	
