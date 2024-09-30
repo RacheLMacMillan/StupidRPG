@@ -20,11 +20,18 @@ public class PlayerMover : MonoBehaviour, IInitializable
 	{
 		float scaledMoveSpeed = _playerMoveSpeed * Time.deltaTime;
 		
-		_playerVelocity = _rigidbody.velocity;
+		Vector2 smoothedDirection = Vector2.Lerp
+		(
+			_playerVelocity, 
+			movementVelocity, 
+			_ValueOfSmoothingMoveSpeed
+		);
 		
-		Vector2 scaledVelocity = Vector2.Lerp(_playerVelocity, movementVelocity, scaledMoveSpeed);
+		_playerVelocity = smoothedDirection;
 		
-		_rigidbody.MovePosition(_rigidbody.position + scaledVelocity);
+		Vector2 scaledMoveDirection = smoothedDirection * scaledMoveSpeed;
+		
+		_rigidbody.MovePosition(_rigidbody.position + scaledMoveDirection);
 	}
 	
 	public void IncreasePlayerSpeed(float value)

@@ -204,7 +204,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0.6679245, b: 0.5082814, a: 0}
+  m_BackGroundColor: {r: 0.6666667, g: 0, b: 0.37195873, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMoveSpeed: 10
-  _ValueOfSmoothingMoveSpeed: 0.05
+  _ValueOfSmoothingMoveSpeed: 0.1
 --- !u!114 &2130067069
 MonoBehaviour:
   m_ObjectHideFlags: 0
