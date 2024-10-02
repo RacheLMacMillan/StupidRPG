@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerMover : MonoBehaviour, IInitializable
+public class PlayerMover : MonoBehaviour
 {
 	[SerializeField] private int _playerMoveSpeed;
 	[SerializeField] private float _ValueOfSmoothingMoveSpeed;

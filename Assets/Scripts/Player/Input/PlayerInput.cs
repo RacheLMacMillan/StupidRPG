@@ -9,6 +9,8 @@ public class PlayerInput : MonoBehaviour
 	public void Awake()
 	{
 		_inputMap = new InputMap();
+		
+		_playerMover = GetComponent<PlayerMover>();
 	
 		Debug.Log("Player Input Initialized");
 	}
