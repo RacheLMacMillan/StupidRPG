@@ -22,8 +22,8 @@ public class PlayerMover : MonoBehaviour
 		
 		Vector2 smoothedDirection = Vector2.Lerp
 		(
-			_playerVelocity, 
-			movementVelocity, 
+			_playerVelocity,
+			movementVelocity,
 			_ValueOfSmoothingMoveSpeed
 		);
 		
