@@ -35,6 +35,24 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""541a1f0e-9b29-4129-9eda-13144b533695"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf84de31-1cb1-4f94-b247-07efb1ca3522"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -103,6 +121,28 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8f449a8-0c20-4b09-9b6f-932bf37882a2"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1baea40c-a89c-4990-9a08-b428726ef970"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -140,6 +180,8 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         // PlayScene
         m_PlayScene = asset.FindActionMap("PlayScene", throwIfNotFound: true);
         m_PlayScene_Move = m_PlayScene.FindAction("Move", throwIfNotFound: true);
+        m_PlayScene_Jump = m_PlayScene.FindAction("Jump", throwIfNotFound: true);
+        m_PlayScene_Attack = m_PlayScene.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -202,11 +244,15 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayScene;
     private List<IPlaySceneActions> m_PlaySceneActionsCallbackInterfaces = new List<IPlaySceneActions>();
     private readonly InputAction m_PlayScene_Move;
+    private readonly InputAction m_PlayScene_Jump;
+    private readonly InputAction m_PlayScene_Attack;
     public struct PlaySceneActions
     {
         private @InputMap m_Wrapper;
         public PlaySceneActions(@InputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayScene_Move;
+        public InputAction @Jump => m_Wrapper.m_PlayScene_Jump;
+        public InputAction @Attack => m_Wrapper.m_PlayScene_Attack;
         public InputActionMap Get() { return m_Wrapper.m_PlayScene; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -219,6 +265,12 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
         }
 
         private void UnregisterCallbacks(IPlaySceneActions instance)
@@ -226,6 +278,12 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
         }
 
         public void RemoveCallbacks(IPlaySceneActions instance)
@@ -264,5 +322,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     public interface IPlaySceneActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }

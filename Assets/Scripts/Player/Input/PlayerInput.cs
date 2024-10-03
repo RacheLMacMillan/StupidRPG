@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
 	[SerializeField] private PlayerMover _playerMover;
+	[SerializeField] private PlayerJumper _playerJumper;
 	
 	private InputMap _inputMap;
 	
@@ -11,6 +12,7 @@ public class PlayerInput : MonoBehaviour
 		_inputMap = new InputMap();
 		
 		_playerMover = GetComponent<PlayerMover>();
+		_playerJumper = GetComponent<PlayerJumper>();
 	
 		Debug.Log("Player Input Initialized");
 	}
