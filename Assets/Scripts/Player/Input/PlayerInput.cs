@@ -1,9 +1,11 @@
+using UnityEditor.Experimental.RestService;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
 	[SerializeField] private PlayerMover _playerMover;
-	[SerializeField] private PlayerJumper _playerJumper;
+	[SerializeField] private PlayerDasher _playerDasher;
 	
 	private InputMap _inputMap;
 	
@@ -12,9 +14,9 @@ public class PlayerInput : MonoBehaviour
 		_inputMap = new InputMap();
 		
 		_playerMover = GetComponent<PlayerMover>();
-		_playerJumper = GetComponent<PlayerJumper>();
-	
-		Debug.Log("Player Input Initialized");
+		_playerDasher = GetComponent<PlayerDasher>();
+		
+		_inputMap.PlayScene.Dash.performed += context => _playerDasher.Dash();
 	}
 	
 	private void OnEnable()

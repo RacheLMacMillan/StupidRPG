@@ -37,7 +37,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""541a1f0e-9b29-4129-9eda-13144b533695"",
                     ""expectedControlType"": ""Button"",
@@ -129,7 +129,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardAndMouse"",
-                    ""action"": ""Jump"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -180,7 +180,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         // PlayScene
         m_PlayScene = asset.FindActionMap("PlayScene", throwIfNotFound: true);
         m_PlayScene_Move = m_PlayScene.FindAction("Move", throwIfNotFound: true);
-        m_PlayScene_Jump = m_PlayScene.FindAction("Jump", throwIfNotFound: true);
+        m_PlayScene_Dash = m_PlayScene.FindAction("Dash", throwIfNotFound: true);
         m_PlayScene_Attack = m_PlayScene.FindAction("Attack", throwIfNotFound: true);
     }
 
@@ -244,14 +244,14 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayScene;
     private List<IPlaySceneActions> m_PlaySceneActionsCallbackInterfaces = new List<IPlaySceneActions>();
     private readonly InputAction m_PlayScene_Move;
-    private readonly InputAction m_PlayScene_Jump;
+    private readonly InputAction m_PlayScene_Dash;
     private readonly InputAction m_PlayScene_Attack;
     public struct PlaySceneActions
     {
         private @InputMap m_Wrapper;
         public PlaySceneActions(@InputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayScene_Move;
-        public InputAction @Jump => m_Wrapper.m_PlayScene_Jump;
+        public InputAction @Dash => m_Wrapper.m_PlayScene_Dash;
         public InputAction @Attack => m_Wrapper.m_PlayScene_Attack;
         public InputActionMap Get() { return m_Wrapper.m_PlayScene; }
         public void Enable() { Get().Enable(); }
@@ -265,9 +265,9 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
@@ -278,9 +278,9 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
@@ -322,7 +322,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     public interface IPlaySceneActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
     }
 }
