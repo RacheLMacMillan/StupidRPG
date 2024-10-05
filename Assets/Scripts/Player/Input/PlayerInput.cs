@@ -16,7 +16,7 @@ public class PlayerInput : MonoBehaviour
 		_playerMover = GetComponent<PlayerMover>();
 		_playerDasher = GetComponent<PlayerDasher>();
 		
-		_inputMap.PlayScene.Dash.performed += context => _playerDasher.Dash();
+		_inputMap.PlayScene.Dash.performed += context => _playerDasher.Dash(_inputMap.PlayScene.Move.ReadValue<Vector2>());
 	}
 	
 	private void OnEnable()
