@@ -1,5 +1,3 @@
-using UnityEditor.Experimental.RestService;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
