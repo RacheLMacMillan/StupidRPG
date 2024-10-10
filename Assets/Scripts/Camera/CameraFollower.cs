@@ -9,12 +9,9 @@ public class CameraFollower : MonoBehaviour
 	
 	[SerializeField] private float _smoothingMoveValue;
 
-	private GameObject _player;
-	
 	private void Awake()
 	{
 		_target = FindAnyObjectByType<Player>().gameObject;
-		_player = _target;
 	}
 	
 	public void FixedUpdate()
@@ -33,10 +30,12 @@ public class CameraFollower : MonoBehaviour
 	
 	public IEnumerator ChangeTargetBySomeTime(GameObject newTarget, float waitForSeconds)
 	{
+		GameObject oldTarget = _target;
+		
 		_target = newTarget;
 		
 		yield return new WaitForSeconds(waitForSeconds);
 		
-		_target = _player;
+		_target = oldTarget;
 	}
 }
