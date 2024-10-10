@@ -1,12 +1,21 @@
+using System.Collections;
 using UnityEngine;
 
 public class CameraFollower : MonoBehaviour
 {
 	[SerializeField] private GameObject _target;
 	
-	[SerializeField] private float _smoothingMoveValue;
-	
 	[SerializeField] private Vector3 _offset;
+	
+	[SerializeField] private float _smoothingMoveValue;
+
+	private GameObject _player;
+	
+	private void Awake()
+	{
+		_target = FindAnyObjectByType<Player>().gameObject;
+		_player = _target;
+	}
 	
 	public void FixedUpdate()
 	{
@@ -20,5 +29,14 @@ public class CameraFollower : MonoBehaviour
 		);
 		
 		transform.position = scaledFollowing;
+	}
+	
+	public IEnumerator ChangeTargetBySomeTime(GameObject newTarget, float waitForSeconds)
+	{
+		_target = newTarget;
+		
+		yield return new WaitForSeconds(waitForSeconds);
+		
+		_target = _player;
 	}
 }
