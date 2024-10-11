@@ -19,20 +19,14 @@ public class CameraFollower : MonoBehaviour
 		LookAtTarget();
 	}
 	
-	public IEnumerator ChangeTargetForSomeTime(GameObject newTarget, float waitForSeconds)
-	{
-		GameObject oldTarget = _target;
-		
-		_target = newTarget;
-		
-		yield return new WaitForSeconds(waitForSeconds);
-		
-		_target = oldTarget;
-	}
-	
 	public void ChangeTarget(GameObject newTarget)
 	{
 		_target = newTarget;
+	}
+	
+	public void ChangeTargetForSomeTime(GameObject newTarget, float waitForSeconds)
+	{
+		StartCoroutine(StartChangingTargetForSomeTime(newTarget, waitForSeconds));
 	}
 	
 	private void LookAtTarget()
@@ -47,5 +41,16 @@ public class CameraFollower : MonoBehaviour
 		);
 		
 		transform.position = scaledFollowing;
+	}
+	
+	private IEnumerator StartChangingTargetForSomeTime(GameObject newTarget, float waitForSeconds)
+	{
+		GameObject oldTarget = _target;
+		
+		_target = newTarget;
+		
+		yield return new WaitForSeconds(waitForSeconds);
+		
+		_target = oldTarget;
 	}
 }
