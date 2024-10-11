@@ -11,4 +11,5 @@ Targest:
 Source:
   Videos:
     https://youtube.com/playlist?list=PL6bqhqO0Ba776ksb3F9P_xmUMT9WvmfFT&si=XE96zHUO5Sho2pFb,
-    https://youtu.be/MFQhpwc6cKE?si=oJD3pODFeep02cDF
+    https://youtu.be/MFQhpwc6cKE?si=oJD3pODFeep02cDF,
+    https://www.youtube.com/watch?v=kUP6OK36nrM
