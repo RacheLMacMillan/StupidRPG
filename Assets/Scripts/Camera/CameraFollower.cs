@@ -16,6 +16,27 @@ public class CameraFollower : MonoBehaviour
 	
 	public void FixedUpdate()
 	{
+		LookAtTarget();
+	}
+	
+	public IEnumerator ChangeTargetForSomeTime(GameObject newTarget, float waitForSeconds)
+	{
+		GameObject oldTarget = _target;
+		
+		_target = newTarget;
+		
+		yield return new WaitForSeconds(waitForSeconds);
+		
+		_target = oldTarget;
+	}
+	
+	public void ChangeTarget(GameObject newTarget)
+	{
+		_target = newTarget;
+	}
+	
+	private void LookAtTarget()
+	{
 		Vector3 targetPosition = _target.transform.position + _offset;
 		
 		Vector3 scaledFollowing = Vector3.Lerp
@@ -26,16 +47,5 @@ public class CameraFollower : MonoBehaviour
 		);
 		
 		transform.position = scaledFollowing;
-	}
-	
-	public IEnumerator ChangeTargetBySomeTime(GameObject newTarget, float waitForSeconds)
-	{
-		GameObject oldTarget = _target;
-		
-		_target = newTarget;
-		
-		yield return new WaitForSeconds(waitForSeconds);
-		
-		_target = oldTarget;
 	}
 }
