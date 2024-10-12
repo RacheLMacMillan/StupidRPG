@@ -30,7 +30,7 @@ public class CameraFollower : MonoBehaviour
 		_target = newTarget;
 	}
 	
-	public void ChangeTargetForSomeTime(GameObject newTarget, float waitForSeconds)
+	public void ChangeTargetForSomeTime(GameObject newTarget, float waitForSeconds, float smoothValue)
 	{
 		if (newTarget == null)
 		{
@@ -41,7 +41,7 @@ public class CameraFollower : MonoBehaviour
 			throw new ArgumentOutOfRangeException();
 		}
 		
-		StartCoroutine(StartChangingTargetForSomeTime(newTarget, waitForSeconds));
+		StartCoroutine(StartChangingTargetForSomeTime(newTarget, waitForSeconds, smoothValue));
 	}
 	
 	private void LookAtTarget()
@@ -58,14 +58,17 @@ public class CameraFollower : MonoBehaviour
 		transform.position = scaledFollowing;
 	}
 	
-	private IEnumerator StartChangingTargetForSomeTime(GameObject newTarget, float waitForSeconds)
+	private IEnumerator StartChangingTargetForSomeTime(GameObject newTarget, float waitForSeconds, float smoothValue)
 	{
 		GameObject oldTarget = _target;
+		float oldSmoothValue = _smoothingMoveValue;
 		
+		_smoothingMoveValue = smoothValue;
 		_target = newTarget;
 		
 		yield return new WaitForSeconds(waitForSeconds);
 		
 		_target = oldTarget;
+		_smoothingMoveValue = oldSmoothValue;
 	}
 }
