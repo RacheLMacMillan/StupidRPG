@@ -22,6 +22,11 @@ public class CameraFollower : MonoBehaviour
 	
 	public void ChangeTarget(GameObject newTarget)
 	{
+		if (newTarget == null)
+		{
+			throw new ArgumentNullException();
+		}
+		
 		_target = newTarget;
 	}
 	
