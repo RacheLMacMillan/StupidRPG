@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -26,6 +27,15 @@ public class CameraFollower : MonoBehaviour
 	
 	public void ChangeTargetForSomeTime(GameObject newTarget, float waitForSeconds)
 	{
+		if (newTarget == null)
+		{
+			throw new ArgumentNullException();
+		}
+		if (waitForSeconds < 0)
+		{
+			throw new ArgumentOutOfRangeException();
+		}
+		
 		StartCoroutine(StartChangingTargetForSomeTime(newTarget, waitForSeconds));
 	}
 	
