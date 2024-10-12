@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMover: {fileID: 514070875}
+  _playerAnimationView: {fileID: 0}
 --- !u!114 &514070877
 MonoBehaviour:
   m_ObjectHideFlags: 0
