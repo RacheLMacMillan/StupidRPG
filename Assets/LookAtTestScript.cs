@@ -9,5 +9,12 @@ public class LookAtTestScript : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		_cameraFollower.ChangeTargetForSomeTime(_target, _time);
+		
+		OnDestroy();
+	}
+	
+	private void OnDestroy()
+	{
+		Destroy(gameObject);
 	}
 }
