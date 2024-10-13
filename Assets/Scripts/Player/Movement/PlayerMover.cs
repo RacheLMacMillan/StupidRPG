@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
 {
+	public Vector2 _scaledMoveDirection { get; private set; }
+	
 	[SerializeField] private int _playerMoveSpeed;
 	[SerializeField] private float _ValueOfSmoothingMoveSpeed;
 	
@@ -29,9 +31,9 @@ public class PlayerMover : MonoBehaviour
 		
 		_playerVelocity = smoothedDirection;
 		
-		Vector2 scaledMoveDirection = smoothedDirection * scaledMoveSpeed;
+		_scaledMoveDirection = smoothedDirection * scaledMoveSpeed;
 		
-		_rigidbody.MovePosition(_rigidbody.position + scaledMoveDirection);
+		_rigidbody.MovePosition(_rigidbody.position + _scaledMoveDirection);
 	}
 	
 	public void IncreasePlayerSpeed(float value)

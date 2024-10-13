@@ -43,6 +43,6 @@ public class PlayerInput : MonoBehaviour
 	
 	private void UpdateView()
 	{
-		_playerAnimationView.ChangeMoveAnimationByDirection(_inputMap.PlayScene.Move.ReadValue<Vector2>());
+		_playerAnimationView.ChangeMoveAnimationByDirection(_playerMover._scaledMoveDirection);
 	}
 }
