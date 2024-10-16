@@ -19,7 +19,7 @@ public class PlayerAnimationView : MonoBehaviour
 		{
 			SetMoovingDirection(false, scaledDirection.x, scaledDirection.y);
 			
-			Debug.Log("Player Is Stoped");
+			Debug.Log("Player Is Stopped");
 		}
 		else
 		{
@@ -34,5 +34,14 @@ public class PlayerAnimationView : MonoBehaviour
 		
 		_animator.SetFloat(nameof(directionX), directionX);
 		_animator.SetFloat(nameof(directionY), directionY);
+		
+		if (directionX < 0)
+		{
+			_spriteRenderer.flipX = true;
+		}
+		else
+		{
+			_spriteRenderer.flipX = false;
+		}
 	}
 }
