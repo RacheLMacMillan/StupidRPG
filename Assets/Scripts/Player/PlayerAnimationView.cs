@@ -40,7 +40,7 @@ public class PlayerAnimationView : MonoBehaviour
 		{
 			_spriteRenderer.flipX = true;
 		}
-		else
+		if (directionX > 0)
 		{
 			_spriteRenderer.flipX = false;
 		}
