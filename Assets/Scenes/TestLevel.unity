@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMoveSpeed: 10
-  _ValueOfSmoothingMoveSpeed: 0.25
+  _ValueOfSmoothingMoveSpeed: 0.5
 --- !u!114 &514070876
 MonoBehaviour:
   m_ObjectHideFlags: 0
