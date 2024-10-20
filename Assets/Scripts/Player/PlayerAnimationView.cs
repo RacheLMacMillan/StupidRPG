@@ -18,14 +18,10 @@ public class PlayerAnimationView : MonoBehaviour
 		if (moveVelocity == Vector2.zero)
 		{
 			SetMoovingDirection(false, moveVelocity.x, moveVelocity.y);
-			
-			Debug.Log("Player Is Stopped");
 		}
 		else
 		{
 			SetMoovingDirection(true, moveVelocity.x, moveVelocity.y);
-			
-			Debug.Log("Player Is Mooving");
 		}
 	}
 	
