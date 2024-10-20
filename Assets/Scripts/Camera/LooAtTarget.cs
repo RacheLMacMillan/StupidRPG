@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class LookAtTestScript : MonoBehaviour
+public class LooAtTarget : MonoBehaviour
 {
 	[SerializeField] private GameObject _target;
 	[SerializeField] private float _time;
@@ -9,9 +9,10 @@ public class LookAtTestScript : MonoBehaviour
 	
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		CameraFollower cameraFollower = other.GetComponent<CameraFollower>();
+		Player player = other.gameObject.GetComponent<Player>();
+		CameraFollower cameraFollower = FindFirstObjectByType<CameraFollower>();
 		
-		if (cameraFollower == null)
+			if (player == null)
 		{
 			throw new NullReferenceException();
 		}
