@@ -2,21 +2,23 @@ using UnityEngine;
 
 public class EnemyPathFinding : MonoBehaviour
 {
-	[SerializeField] private float moveSpeed = 2f;
+	[SerializeField] private float _moveSpeed = 2f;
 	
-	private Rigidbody2D rigidbody2D;
-	private Vector2 moveDirection;
+	private Rigidbody2D _rigidbody2D;
+	private Vector2 _moveDirection;
 	
-	private void Awake() {
-		rigidbody2D = GetComponent<Rigidbody2D>();
+	private void Awake()
+	{
+		_rigidbody2D = GetComponent<Rigidbody2D>();
 	}
 	
-	private void FixedUpdate() {
-		rigidbody2D.MovePosition(rigidbody2D.position + moveDirection * (moveSpeed * Time.fixedDeltaTime));
+	private void FixedUpdate()
+	{
+		_rigidbody2D.MovePosition(_rigidbody2D.position + _moveDirection * (_moveSpeed * Time.fixedDeltaTime));
 	}
 	
 	public void MoveTo(Vector2 targetPosition)
 	{
-		moveDirection = targetPosition;
+		_moveDirection = targetPosition;
 	}
 }

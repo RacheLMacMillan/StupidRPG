@@ -3,17 +3,13 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-	private enum State
+	private States _state;
+	private EnemyPathFinding _enemyPathFinding;
+	
+	private void Awake()
 	{
-		Roaming
-	}
-	
-	private State state;
-	private EnemyPathFinding enemyPathFinding;
-	
-	private void Awake() {
-		enemyPathFinding = GetComponent<EnemyPathFinding>();
-		state = State.Roaming;
+		_enemyPathFinding = GetComponent<EnemyPathFinding>();
+		_state = States.Roaming;
 	}
 	
 	private void Start()
@@ -23,10 +19,10 @@ public class EnemyAI : MonoBehaviour
 
 	private IEnumerator RoamingRoutine()
 	{
-		while (state == State.Roaming)
+		while (_state == States.Roaming)
 		{
 			Vector2 roamPosition = GetRoamingPosition();
-			enemyPathFinding.MoveTo(roamPosition);
+			_enemyPathFinding.MoveTo(roamPosition);
 			yield return new WaitForSeconds(2f);
 		}
 	}
