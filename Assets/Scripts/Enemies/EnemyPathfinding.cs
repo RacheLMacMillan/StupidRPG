@@ -14,11 +14,8 @@ public class EnemyPathFinding : MonoBehaviour
 	
 	private void FixedUpdate()
 	{
-		_rigidbody2D.MovePosition(_rigidbody2D.position + _moveDirection * (_moveSpeed * Time.fixedDeltaTime));
+
 	}
 	
-	public void MoveTo(Vector2 targetPosition)
-	{
-		_moveDirection = targetPosition;
-	}
+
 }
