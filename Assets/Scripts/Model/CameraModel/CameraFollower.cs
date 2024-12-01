@@ -15,7 +15,7 @@ public class CameraFollower : MonoBehaviour
 		_target = FindAnyObjectByType<Player>().gameObject;
 	}
 	
-	public void FixedUpdate()
+	public void FixedUpdate() // Fix this one
 	{
 		LookAtTarget();
 	}

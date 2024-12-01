@@ -12,7 +12,7 @@ public class LooAtTarget : MonoBehaviour
 		Player player = other.gameObject.GetComponent<Player>();
 		CameraFollower cameraFollower = FindFirstObjectByType<CameraFollower>();
 		
-			if (player == null)
+		if (player == null)
 		{
 			throw new NullReferenceException();
 		}

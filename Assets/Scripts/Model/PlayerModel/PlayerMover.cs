@@ -60,5 +60,4 @@ public class PlayerMover : MonoBehaviour
 	{
 		return _playerMoveSpeed;
 	}
-	
 }
