@@ -11,7 +11,7 @@ public class PlayerMover : MonoBehaviour
 	private Rigidbody2D _rigidbody;
 	private Vector2 _playerVelocity;
 	
-	public void Awake()
+	private void Awake()
 	{
 		_rigidbody = GetComponent<Rigidbody2D>();
 		
